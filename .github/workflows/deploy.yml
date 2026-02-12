@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-osoriodaniel-net
+  group: deploy-osoriodaniel-net-v2
   cancel-in-progress: true
 
 jobs:
