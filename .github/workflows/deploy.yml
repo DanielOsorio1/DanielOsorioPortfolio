@@ -20,13 +20,10 @@ jobs:
           printf "%s" "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-      - name: Add server host key
-        run: |
-          ssh-keyscan -H ssh.osoriodaniel.net >> ~/.ssh/known_hosts
-
       - name: Trigger deploy on server
         run: |
           ssh -i ~/.ssh/deploy_key \
             -o IdentitiesOnly=yes \
-            -o StrictHostKeyChecking=yes \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
             daniel@ssh.osoriodaniel.net
