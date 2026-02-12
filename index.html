@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniel Osorio | Biomedical Engineer</title>
+
+  <!--Favicons-->
+<link rel="icon" href="/icons/icons-2026-1/favicon-2026-1.ico?v=4">
+<link rel="icon" type="image/x-icon" href="icons/icons-2026-1favicon-2026-1.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/icons-2026-1/favicon-16x16-2026-1.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icons-2026-1/favicon-32x32-2026-1.png">
+<link rel="apple-touch-icon" href="icons/icons-2026-1/apple-touch-icon-2026-1.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icons-2026-1/android-chrome-192x192-2026-1.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icons-2026-1/android-chrome-512x512-2026-1.png">
+<link rel="manifest" href="icons/icons/2026-1/site.webmanifest">
+
+<!-- Open Graph / iOS Preview -->
+<meta property="og:title" content="Daniel Osorio | Biomedical Engineer">
+<meta property="og:description" content="Portfolio, research, and projects in biomedical engineering and immunology.">
+<meta property="og:image" content="https://osoriodaniel.net/images/headshot2026.jpg">
+<meta property="og:url" content="osoriodaniel.net">
+<meta property="og:type" content="website">
+<meta name="apple-mobile-web-app-title" content="Daniel Osorio">
+
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #666666;
+      --accent: #1f4fd8;
+      --border: #e5e5e5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 1rem;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    nav.visible {
+      transform: translateY(0);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .hero-buttons a {
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 0.55rem 1.1rem;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* Primary Bio button */
+    .hero-buttons a.primary {
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-buttons a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* BIO */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .bio p {
+      margin-bottom: 1rem;
+      max-width: 600px;
+    }
+
+    .bio-photo img {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    /* RESEARCH */
+    .research-item {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+
+    .research-item h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .research-item p {
+      color: var(--muted);
+      max-width: 700px;
+    }
+/* Research photos */
+.research-photo {
+  margin-top: 1rem;
+  max-width: 100%;
+}
+
+.research-photo img {
+  width: 100%;
+  max-width: 500px;   /* <- this is the size limiter */
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+    /* PROJECTS */
+.project {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Text column */
+.project-text {
+  flex: 1;
+  max-width: 620px;
+}
+.project-text p {
+  color: var(--muted);
+  font-size: 1rem;
+      margin-bottom: 0.5rem;
+}
+/* Image column */
+.project-image {
+  flex-shrink: 0;
+  width: 260px;
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .project {
+    flex-direction: column;
+  }
+
+  .project-image {
+    width: 100%;
+  }
+}
+
+
+    /* RESUME */
+    .resume-frame {
+      width: 100%;
+      height: 600px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    /* CONTACT */
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer {
+      height: 4rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .bio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resume-frame {
+        height: 450px;
+      }
+    }
+    
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#bio">Bio</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <h1>Daniel Osorio</h1>
+     
+     
+    <p class="subtitle">
+      Biomedical Engineer with hands on experience with biomaterials, immunology,
+      computation, medical device development, and FDA regulation.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#bio" class="primary">Bio</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section id="bio" class="bio">
+    <h2>Bio</h2>
+
+    <div class="bio-grid">
+      <div>
+        <p>
+          I am a biomedical engineer with hands-on experience designing and analyzing
+          systems at the intersection of biology, hardware, and computation.
+        </p>
+        <p>
+          My work emphasizes understanding constraints and working with clinicians 
+          to deliver unique and novel solutions to medical problems.
+        </p>
+      </div>
+
+      <div class="bio-photo">
+        <img src="images/headshot2026.jpg" alt="headshot">
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <h2>Research</h2>
+
+    <div class="research-item">
+      <h3>Shape Analysis of Thalamic Nuclei</h3>
+      <p>
+        Used open source T1 MRIs and separated thalamic nuclei by using THOMAS through Hiper Gator. Separated 
+	Thalamic nuclei were then inputted into shapeworks to do thorough grouped shape analysis. 
+      </p>
+      <h4>Principal Investigator</h4>
+      <a href="https://scholar.google.com/citations?user=J5Wss1gAAAAJ&hl=en" target="_blank" title="Google Scholar: Christopher Butson">Dr. Christopher Butson</a>
+
+      
+    </div>
+  
+
+    <div class="research-item">
+      <h3>Immune Modulation in Dendritic Cells</h3>
+      <p>
+        Investigated the effects of cancer-derived molecules on dendritic cell
+        maturation and immune signaling, with emphasis on phenotypic and functional changes.
+      </p>
+      <h4>Principal Investigator</h4>
+      <a href="https://scholar.google.com/citations?user=Crb32uEAAAAJ&hl=en" target="_blank" title="Google Scholar: Jamal Lewis">Dr. Jamal Lewis</a>
+      <div class="research-photo">
+  <img src="images/IMBLphoto.jpeg" alt="BMES Poster Presentation">
+</div>
+
+    </div>
+
+
+<div class="research-item">
+      <h3>Transfecting MSCs with mRNA Loaded Liposomes</h3>
+      <p>
+        Manufactured liposomes to transfect Mesenchymal Stem Cells for the treatment of sickle cell disease. 
+      </p>
+      <h4>Principal Investigator</h4>
+      <a href="https://scholar.google.com/citations?user=eyPY0LsAAAAJ&hl=en" target="_blank" title="Google Scholar: Edward Botchwey">Dr. Edward Botchwey</a>
+      <div class="research-photo">
+  <img src="images/BotchweyLabphoto.jpeg" alt="MSC Transfection Poster Presentation">
+</div>
+
+    </div>
+  </section>
+  
+ 
+  <!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+
+
+  <div class="project">
+    <div class="project-text">
+      <h3>Alafair Bioscience Precision Hydrogel Aliquot Machine</h3>
+      <p>
+        Designed a system to dispense 1–3 mL of high-viscosity fluids (20,000–30,000 cP)
+        with &lt;0.2 mL error for pharmaceutical and adhesive applications.
+      </p>
+      <ul>
+        <li>Arduino-based stepper motor linear actuator.</li>
+        <li>Precision motor control firmware.</li>
+        <li>Experimental validation of flow accuracy.</li>
+      </ul>
+    </div>
+
+    <div class="project-image">
+      <img src="images/Hydrogel_Dispenser.JPG" alt="Hydrogel Dispenser">
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-text">
+      <h3>EKG on a Breadboard</h3>
+      <p>
+        Built an analog EKG circuit capable of displaying QRS complexes on an oscilloscope.
+      </p>
+      <ul>
+        <li>Designed bandpass filters using LM741 op-amps.</li>
+        <li>Signal amplification and noise reduction.</li>
+        <li>Hands-on debugging with multimeter and scope.</li>
+      </ul>
+    </div>
+
+    <div class="project-image">
+      <img src="images/Breadboard_EKG.JPG" alt="EKG on a Breadboard">
+    </div>
+  </div>
+
+<div class="project">
+    <div class="project-text">
+      <h3>HomeLabbing</h3>
+      <p>
+        Installed Ubuntu server on an old computer to host websites, personal data storage,
+        and IT practice.
+      </p>
+      <ul>
+        <li>Hosted and deployed a website in HTML.</li>
+        <li>Eliminate paid services such as website hosting and cloud storage.</li>
+        <li>Implemented SSH protocols for remote access.</li>
+        <li>Demonstrates ability to navigate Linux servers.</li>
+      </ul>
+    </div>
+  </div>
+
+   <div class="project">
+    <div class="project-text">
+      <h3>Light up Nametag PCB</h3>
+      <p>
+        Created and ordered a custom PCB nametag 
+      </p>
+      <ul>
+        <li>Designed the cirucit on a breadboard.</li>
+        <li>Recreated the circuit on KiCAD.</li>
+        <li>Ordered and Soldered components.</li>
+      </ul>
+    </div>
+
+    <div class="project-image">
+      <img src="images/PCBnametag.png" alt="PCB Nametag">
+      
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="project-text">
+      
+      
+
+<div>
+  <h3>NFC Card Taps:</h3>
+  <span id="tap-count">0</span>
+</div>
+
+<script>
+async function updateCount() {
+    try {
+        const res = await fetch("/count");
+        const data = await res.json();
+        document.getElementById("tap-count").textContent = data.count;
+    } catch (err) {
+        console.error("Could not fetch tap count", err);
+    }
+}
+
+// Update every 5 seconds
+updateCount();
+setInterval(updateCount, 5000);
+</script>
+
+</section>
+
+ 
+
+  <!-- RESUME -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <iframe class="resume-frame" src="images/DanielOsorioResumeF2025.pdf"></iframe>
+    <a href="images/DanielOsorioResumeF2025.pdf" download>Download Resume</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:danielosorio@ufl.edu">danielosorio@ufl.edu</a></p>
+    <p>
+      LinkedIn:
+      <a href="https://linkedin.com/in/danielosorio-in" target="_blank">
+        linkedin.com/in/danielosorio-in
+      </a>
+    </p>
+  </section>
+
+  <footer></footer>
+
+  <script>
+    const nav = document.getElementById("navbar");
+    const heroHeight = document.getElementById("hero").offsetHeight;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > heroHeight - 80) {
+        nav.classList.add("visible");
+      } else {
+        nav.classList.remove("visible");
+      }
+    });
+  </script>
+
+</body>
+</html>
+
