@@ -4,10 +4,7 @@ WORKDIR /app
 
 COPY tap_api.py .
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends git openssh-client ca-certificates \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip install --no-cache-dir flask
+RUN pip install --no-cache-dir flask
 
 EXPOSE 5001
 
